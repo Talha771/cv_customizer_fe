@@ -6,15 +6,14 @@ export const Body = () => {
     <div className={styles.body}>
         <div className={styles.descriptionEntry}> 
         <div>
-            TextBox
+        <input placeholder='Enter Job Description or Drag .txt or pdf file here'>Enter your </input>
         </div>
         <div>
             OR 
         </div>
         <div>
-            Enter Stuff 
-            Languages
-            Skills 
+            <input placeholder='Enter list of languages, comma seperated'> </input>
+            <input placeholder='Enter list of TOOLS, comma seperated'> </input>
         </div>
         </div>
         <div className={styles.pdfViewer}>
