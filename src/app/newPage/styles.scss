@@ -1,0 +1,107 @@
+// styles.scss
+
+$app-bg: #FFB703;
+$navbar-bg: #0074d9;
+$button-bg: #023047;
+$button-hover-bg: #0056a3;
+$text-color: #333;
+$card-bg: #fff;
+
+.app-container {
+  min-height: 100vh;
+  background: $app-bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.main-content {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+}
+
+.form-section {
+  background: $card-bg;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+
+  h2 {
+    font-size: 1.25rem;
+    color: $text-color;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+    gap:30
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: $text-color;
+      margin-bottom: 0.5rem;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+        border-color: $button-bg;
+        box-shadow: 0 0 5px rgba(0, 116, 217, 0.5);
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background: $button-bg;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: $button-hover-bg;
+    }
+  }
+}
+
+.video-section {
+  flex: 1;
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+    }
+  }
+}
