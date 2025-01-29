@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./header.module.scss"
 const Header = () => {
-    let headerMenu = ["Home","CVCustomizer"]
+    const headerMenu = ["Home","CVCustomizer"]
     return (
     <div className={styles.header}>
         {headerMenu.map((item)=>(   <div key={item} className={`${styles.menu} ${styles[item] || ''}`}>

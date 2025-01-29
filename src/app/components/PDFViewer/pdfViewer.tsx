@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./pdfViewer.module.scss";
 
-export const pdfViewer = () => {
+export const pdfViewer = (src: string) => {
+  console.log(src);
   return (
     <div className={styles.pdfViewer}>
       <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/tmg6d3T_T6Q"
-        title="GeeksforGeeks"
+        width="100%"
+        height="600" 
+        src={src}
+        title="Custom Resume PDF"
       ></iframe>
+
     </div>
   );
 };

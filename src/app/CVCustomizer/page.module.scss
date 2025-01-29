@@ -2,15 +2,70 @@
     height:calc(100vh - 80px);
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    .descriptionEntry{
-    width: 50%;
+    align-items: flex-start;
+    justify-content: center;
+    .orBlock{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        width: 100%;
+        margin: 10px;
+        .divider{
+            height:2px;
+            background-color: black;
+            width:90%
+        }
+        h2{
+            color:#fb8500
+        }
     }
-    .descriptionEntry{
-        
+    .descriptionEntry {
+        display: flex;
+        flex-direction: column; /* Stack child elements vertically */
+        justify-content: flex-start; /* Align items to the top */
+        align-items: flex-start; /* Align child elements to the left */
+        width: 80%;
+        background-color: white;
+        padding: 20px; /* Add padding for spacing inside */
+        margin: 20px;
+        border-radius: 1rem; /* Rounded corners */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+      }
+      .fullDescriptionField{
+        width: 100%;
+      }
+      .descriptionEntry h3 {
+        margin-bottom: 20px; /* Add spacing below the heading */
+      }
+      
+      .descriptionEntry label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .descriptionEntry input {
+        width: 100%; /* Make input take full width */
+        padding: 10px; /* Add padding inside the input box */
+        margin-bottom: 10px; /* Space between inputs */
+        border: 1px solid #ccc; /* Border styling */
+        border-radius: 0.5rem; /* Rounded corners for inputs */
+      }
+      
+      .descriptionEntry button {
+        width: 100%; /* Full-width button */
+        padding: 10px;
+        background-color: #023047; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .descriptionEntry button:hover {
+        background-color: #03506f;
+      }
     }
-    .pdfViewer{
-        background:#FB8500;
-        width: 50%;
-    }
-}

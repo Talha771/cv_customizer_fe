@@ -11,3 +11,13 @@ export async function apiCall(endpoint:string, options = {}) {
 
   return response.json();
 }
+
+export function checkString(languages: string, tools: string): boolean {
+  const isValidCommaSeparated = (str: string) => {
+    const regex = /^[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*$/;
+    return regex.test(str) && str.trim() !== '';
+  };
+  const isLanguagesValid = isValidCommaSeparated(languages);
+  const isToolsValid = isValidCommaSeparated(tools);
+  return isLanguagesValid && isToolsValid;
+}
