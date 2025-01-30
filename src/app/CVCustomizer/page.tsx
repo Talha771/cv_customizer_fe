@@ -11,7 +11,7 @@ export default function Page() {
   const [pdfFile,setpdfFile]=useState('')
 async function sendJobDescription(jobDescription:string){
     try{
-        axios.post('https://api.tjbravo.com/description',{
+        axios.post('https://tjbravo.com:8000/description',{
             description:jobDescription
         })
     }
@@ -24,7 +24,7 @@ async function sendJobDescription(jobDescription:string){
 async function getCustomCV() {
     try {
       // Replace with the correct API URL
-      const response = await axios.get("https://api.tjbravo.com/customCV", {
+      const response = await axios.get("https://tjbravo.com:8000/customCV", {
         responseType: "blob", // To handle the binary response
       });
   
