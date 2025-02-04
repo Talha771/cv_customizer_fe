@@ -1,20 +1,65 @@
-/* SCSS file (e.g., header.module.scss) */
-.header {
+  // /* SCSS file (e.g., header.module.scss) */
+  // .header {
+  //     background: #023047;
+  //     color: #ffb703;
+  //     display: flex;
+  //     flex-direction: row;
+  //     // gap: 2vw;
+  //     padding: 20px;
+  //     height: 80px;
+  //     max-height: 80px;
+  //     // align-content: space-between;
+  //     .logo{
+  //     justify-items: flex-start;
+  //     }
+  //     .menuWrapper{
+  //       justify-items:flex-end;
+  //     }
+  //     .menu{
+  //       justify-items: flex-end;
+
+  //       :hover{
+  //         opacity: 0.3;
+  //       }
+  //     }
+  //     .Home{
+  //       color:white
+  //     }
+  //   }
+
+  .header {
     background: #023047;
     color: #ffb703;
     display: flex;
     flex-direction: row;
-    gap: 2vw;
-    justify-content: center;
+    justify-content: space-between; /* Align logo and menu on opposite sides */
+    align-items: center; /* Vertically center items */
     padding: 20px;
     height: 80px;
     max-height: 80px;
-    .menu{
-      :hover{
-        opacity: 0.3;
-      }
+
+    .logo {
+        font-size: 24px; /* Adjust size if needed */
+        font-weight: bold;
     }
-    .Home{
-      color:white
+
+    .menuWrapper {
+        display: flex;
+        gap: 20px; /* Space between menu items */
     }
-  }
+
+    .menu {
+        cursor: pointer;
+        font-size: 18px;
+        transition: opacity 0.3s ease-in-out;
+
+        &:hover {
+            opacity: 0.3;
+        }
+    }
+
+    .Home {
+        color: white;
+        font-weight: bold;
+    }
+}
