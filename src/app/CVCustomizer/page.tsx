@@ -5,8 +5,6 @@ import styles from "./page.module.scss";
 import { PdfViewer } from "../components/PDFViewer/PdfViewer";
 import { Loader } from "../components/Loader/Loader";
 import { Accordion } from "../components/Accordion/Accordion";
-// import './envConfig.ts'
-
 export default function Page() {
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
   console.log(API_BASE)
