@@ -1,3 +1,14 @@
+.overlay {
+  opacity: 0.5; /* 20% visible, almost transparent */
+  pointer-events: none; /* Optional: Prevent clicks while loading */
+}
+.pageWrapper{
+  position: relative;
+  .loader{
+    position: absolute;
+    top: 25%;
+    left:50%
+  }
 .body{
     height:calc(100vh - 80px);
     display: flex;
@@ -69,3 +80,4 @@
         background-color: #03506f;
       }
     }
+}

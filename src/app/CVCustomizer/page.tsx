@@ -2,18 +2,21 @@
 import axios from "axios"
 import React, {useState } from "react";
 import styles from "./page.module.scss";
-import { pdfViewer } from "../components/PDFViewer/pdfViewer";
+import { PdfViewer } from "../components/PDFViewer/PdfViewer";
+import { Loader } from "../components/Loader/Loader";
 export default function Page() {
   console.log(process.env.BACKEND_BASE_URL);
   const [jobDescription, setJobDescription] = useState('');
   const [languages, setLanguages]= useState("")
   const [tools,setTools]=useState('')
   const [pdfFile,setpdfFile]=useState('')
+  const [loading,setLoading] = useState(false)
 async function sendJobDescription(jobDescription:string){
     try{
-        axios.post('https://api.tjbravo.com/description',{
+        axios.post('http://127.0.0.1:8000/description',{
             description:jobDescription
         })
+        setLoading(true)
     }
     catch(error){
         console.error('Error sending job description:', error);
@@ -24,7 +27,7 @@ async function sendJobDescription(jobDescription:string){
 async function getCustomCV() {
     try {
       // Replace with the correct API URL
-      const response = await axios.get("https://api.tjbravo.com/customCV", {
+      const response = await axios.get("http://127.0.0.1:8000/customCV", {
         responseType: "blob", // To handle the binary response
       });
   
@@ -37,9 +40,14 @@ async function getCustomCV() {
       console.error("Error fetching custom CV:", error);
       alert("Failed to generate the custom resume.");
     }
+    setLoading(false)
   }
   return (
-    <div className={styles.body}>
+    <div className={styles.pageWrapper}>
+      <div className={styles.loader}>
+      <Loader loading = {loading}/>
+      </div>
+    <div className={`${styles.body} ${loading ? styles.overlay : ""}` }>
       <div className={styles.descriptionEntry}>
         <h3>Generate Custom Resume</h3>
         <div className={styles.fullDescriptionField}>
@@ -64,6 +72,9 @@ async function getCustomCV() {
               if (jobDescription && (languages || tools)){
                   alert("The tool will use the Job Description and not Manual Entry if both are provided")
                 }
+                if (pdfFile) {
+                  setpdfFile("")
+                }
                 await sendJobDescription(jobDescription);
                 await getCustomCV();                
             }}
@@ -73,10 +84,11 @@ async function getCustomCV() {
         </div>
       </div>
       {pdfFile != ""? (
-        <div className={styles.pdfViewer}>{pdfViewer(pdfFile)}</div>
+        <div className={styles.pdfViewer}>{PdfViewer(pdfFile)}</div>
       ) : (
         ""
       )}
+    </div>
     </div>
   );
 }
