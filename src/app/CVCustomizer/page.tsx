@@ -4,8 +4,12 @@ import React, {useState } from "react";
 import styles from "./page.module.scss";
 import { PdfViewer } from "../components/PDFViewer/PdfViewer";
 import { Loader } from "../components/Loader/Loader";
+import { Accordion } from "../components/Accordion/Accordion";
+// import './envConfig.ts'
+
 export default function Page() {
-  console.log(process.env.BACKEND_BASE_URL);
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+  console.log(API_BASE)
   const [jobDescription, setJobDescription] = useState('');
   const [languages, setLanguages]= useState("")
   const [tools,setTools]=useState('')
@@ -13,7 +17,7 @@ export default function Page() {
   const [loading,setLoading] = useState(false)
 async function sendJobDescription(jobDescription:string){
     try{
-        axios.post('http://127.0.0.1:8000/description',{
+        axios.post(`${API_BASE}/description`,{
             description:jobDescription
         })
         setLoading(true)
@@ -26,8 +30,7 @@ async function sendJobDescription(jobDescription:string){
 
 async function getCustomCV() {
     try {
-      // Replace with the correct API URL
-      const response = await axios.get("http://127.0.0.1:8000/customCV", {
+      const response = await axios.get(`${API_BASE}/customCV`, {
         responseType: "blob", // To handle the binary response
       });
   
@@ -89,6 +92,7 @@ async function getCustomCV() {
         ""
       )}
     </div>
+    <Accordion/>
     </div>
   );
 }
