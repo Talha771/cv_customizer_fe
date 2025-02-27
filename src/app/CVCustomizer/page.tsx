@@ -92,7 +92,7 @@ async function getCustomCV() {
         ""
       )}
     </div>
-    <Accordion/>
+    {/* <Accordion/> */}
     </div>
   );
 }
