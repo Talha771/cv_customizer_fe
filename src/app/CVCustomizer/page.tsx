@@ -1,46 +1,45 @@
 "use client";
-import axios from "axios"
-import React, {useState } from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import styles from "./page.module.scss";
 import { PdfViewer } from "../components/PDFViewer/PdfViewer";
 import { Loader } from "../components/Loader/Loader";
 export default function Page() {
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
-  console.log(API_BASE)
-  const [jobDescription, setJobDescription] = useState('');
-  const [languages, setLanguages]= useState("")
-  const [tools,setTools]=useState('')
-  const [pdfFile,setpdfFile]=useState('')
-  const [loading,setLoading] = useState(false)
-async function sendJobDescription(jobDescription:string){
-    try{
-        axios.post(`${API_BASE}/description`,{
-            description:jobDescription
-        })
-        setLoading(true)
+  console.log(API_BASE);
+  const [jobDescription, setJobDescription] = useState("");
+  const [languages, setLanguages] = useState("");
+  const [tools, setTools] = useState("");
+  const [pdfFile, setpdfFile] = useState("");
+  const [loading, setLoading] = useState(false);
+  async function sendJobDescription(jobDescription: string) {
+    try {
+      axios.post(`${API_BASE}/description`, {
+        description: jobDescription,
+      });
+      setLoading(true);
+    } catch (error) {
+      console.error("Error sending job description:", error);
+      alert("Failed to send job description. Please try again.");
     }
-    catch(error){
-        console.error('Error sending job description:', error);
-        alert('Failed to send job description. Please try again.');    
-    }
-}
+  }
 
-async function getCustomCV() {
+  async function getCustomCV() {
     try {
       const response = await axios.get(`${API_BASE}/customCV`, {
         responseType: "blob", // To handle the binary response
       });
-  
+
       // Create a link to download the PDF
       const file = new Blob([response.data], { type: "application/pdf" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(file);
-      setpdfFile(link.href)
+      setpdfFile(link.href);
     } catch (error) {
       console.error("Error fetching custom CV:", error);
       alert("Failed to generate the custom resume.");
     }
-    setLoading(false)
+    setLoading(false);
   }
   return (
     <div className={styles.pageWrapper}>
@@ -76,20 +75,17 @@ async function getCustomCV() {
                   setpdfFile("")
                 }
                 await sendJobDescription(jobDescription);
-                await getCustomCV();                
+                await getCustomCV();
             }}
           >
             Generate CV
           </button>
         </div>
       </div>
-      {pdfFile != ""? (
         <div className={styles.pdfViewer}>{PdfViewer(pdfFile)}</div>
-      ) : (
-        ""
-      )}
     </div>
-    {/* <Accordion/> */}
+      <div className={styles.sideBar}>Sidebars</div>
     </div>
   );
+  
 }

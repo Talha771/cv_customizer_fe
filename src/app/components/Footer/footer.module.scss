@@ -1,0 +1,19 @@
+.footer{
+    background-color: #023047;
+    max-height: 55px;
+    height: 55px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;    
+    padding-left: 30px;
+    padding-right:30px;
+    .social{
+        display: flex;
+          gap:10px;
+    }
+    .contactMe{
+        color: #FFB703;
+    }
+}
