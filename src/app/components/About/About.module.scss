@@ -1,0 +1,61 @@
+.About {
+  // background: radial-gradient(circle, #7366a8  , #111827);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+  .noUnderline {
+    text-decoration: none; // Removes the underline
+    color: inherit; // Uses the parent element's color
+  }
+
+  .Introduction {
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: 2.25rem;
+    color: white;
+    h2{
+      text-align: center;
+    }
+  }
+  .pfp {
+    border-color: white;
+    img {
+      margin-bottom: -25px;
+      border-radius: 50px;
+    }
+  }
+  .reachOutdivs {
+    color: white;
+    display: flex;
+    gap: 5px;
+    :hover{
+      opacity: 0.5;
+    }
+    .rectangleDiv {
+      background-color: #524d60;
+      min-width: 250px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      border-radius: 500px;
+    }
+    .icon {
+      background-color: #524d60;
+      min-width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      border-radius: 500px;
+      :hover{
+        opacity: 0.4;
+      }
+    }
+  }
+}

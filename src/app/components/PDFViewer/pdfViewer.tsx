@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./pdfViewer.module.scss";
 
-export const pdfViewer = (src: string) => {
+export const PdfViewer = (src: string) => {
   console.log(src);
   return (
     <div className={styles.pdfViewer}>

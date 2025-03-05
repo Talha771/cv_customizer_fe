@@ -1,7 +1,16 @@
 .main{
     color:transparent;  
+    background-color: rgba(17, 24, 39);
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+    .About{
+        width: 100%;
+    }
 }
 .page{
     background-color: white;
 }
+
 
