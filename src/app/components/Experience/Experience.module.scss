@@ -1,0 +1,11 @@
+.experience{
+    display: flex;
+    height: 300px;
+    justify-content: center;
+  .verticalLine {
+    opacity: 0.2;
+    background-color: grey;
+    border-radius: 50px;
+    width: 5px;
+  }
+}
