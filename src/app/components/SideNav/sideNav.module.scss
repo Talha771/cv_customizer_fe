@@ -1,0 +1,22 @@
+.sideNav {
+  background-color: rgb(3, 7, 18, 0.75);
+  border-radius: 999px;
+  //   min-height: 100%;
+  display: flex;
+  width: 80px;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 25 0 25 0;
+  overflow-y: auto;
+  li {
+    text-decoration: none;
+    font-size: small;
+    color: rgb(107 114 128);
+    list-style-type: none;
+    &.active {
+      color: white;
+    }
+  }
+}

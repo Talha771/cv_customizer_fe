@@ -6,6 +6,7 @@
 
 /* Optionally, reset some Geist UI defaults */
 body {
+  scroll-behavior: smooth;
   background-color: #FFB703;
   margin: 0;
   padding: 0;
