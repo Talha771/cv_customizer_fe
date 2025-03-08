@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import styles from "./sideNav.module.scss";
 import Image from "next/image";
+import { Smooch } from "next/font/google";
 
 const SideNav = () => {
   useEffect(() => {
@@ -44,7 +45,10 @@ const SideNav = () => {
   }, []);
 
   const clickHandler = (key: string) => {
-    window.location.hash = key;
+    const section = document.getElementById(key)
+    if (section){
+      section.scrollIntoView({behavior:"smooth"})
+    }
   };
 
   return (

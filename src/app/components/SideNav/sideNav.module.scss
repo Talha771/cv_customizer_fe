@@ -15,8 +15,10 @@
     font-size: small;
     color: rgb(107 114 128);
     list-style-type: none;
+    // border-radius: 50%;
     &.active {
       color: white;
+      background-color: rgb(107, 114, 128);
     }
   }
 }

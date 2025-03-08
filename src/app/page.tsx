@@ -6,6 +6,8 @@ import Vertical from "./components/VerticalLine/Vertical";
 import styles from "./page.module.css";
 
 export default function Home() {
+  // yahan bhi create IntersectionObserver API.
+  
   return (
     <div className={styles.page}>
       <main className={styles.main}>
