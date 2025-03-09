@@ -1,4 +1,4 @@
-import { ProjectsData } from "./types";
+import { ExperienceCardData, ProjectsData } from "./types";
 
 export const projects_arr: ProjectsData[] = [
   {
@@ -20,3 +20,27 @@ export const projects_arr: ProjectsData[] = [
     Tools: ["FastAPI", "React", "PostgreSQL"],
   },
 ];
+
+
+export const ExperienceData: ExperienceCardData[] = [
+  {
+    logo: "./github.svg",
+    Title: "Jacqueline Construction",
+    description: "Developed a full-stack job tracking application, reducing reporting time by 30 minutes daily.\n• Improved user adoption by 40% through collaboration with management and stakeholders.",
+    designation: "Full Stack Developer",
+  },
+  {
+    logo: "./github.svg",
+    Title: "QLU.ai",
+    description: "Increased data retrieval speed by 50% with a custom search algorithm in Cassandra.\n• Deployed a document management system processing 10,000+ files daily for clients.",
+    designation: "Full Stack Developer",
+  },
+  {
+    logo: "./github.svg",
+    Title: "Your Company",
+    description: "Excited for new opportunities! Open to offers and impactful leadership roles.\nLet's connect and explore how we can drive innovation together.",
+    designation: "Open to Offers",
+    button:"mailto:talha.j771@gmail.com"
+  }
+
+]

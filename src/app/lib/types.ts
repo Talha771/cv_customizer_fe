@@ -5,3 +5,10 @@ export interface ProjectsData{
     Link?:string
   }
   
+  export interface ExperienceCardData {
+    logo:string,
+    Title:string,
+    description:string,
+    designation:string,
+    button?:string
+  }

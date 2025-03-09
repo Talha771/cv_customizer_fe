@@ -1,11 +1,90 @@
-.experience{
+.experienceWrapper {
+  .title {
+    width: 100%;
+    margin-bottom: 25px;
+    text-align: center;
+    h1 {
+      color: #eaf6ff;
+    }
+  }
+
+  .experience {
     display: flex;
-    height: 300px;
     justify-content: center;
-  .verticalLine {
-    opacity: 0.2;
-    background-color: grey;
-    border-radius: 50px;
-    width: 5px;
+    align-items: center;
+    position: relative; // Ensure it serves as a reference for absolute positioning
+    flex-direction: column;
+    gap: 50px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background-color: #4a5568; // Gray color
+      transform: translateX(-50%);
+    }
+
+    .experienceCard {
+      display: flex;
+      align-items: center; // Align items horizontally
+      position: relative; // Ensure the circle is positioned correctly
+      align-items: center;
+      justify-content: center;
+
+      .circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 50%; // Position on the vertical line (gray line)
+        top: 0; // Align circle to the top
+        transform: translateX(
+          -50%
+        ); // Center horizontally along the vertical line
+        border: 5px solid white;
+        background-color: rgba(128, 128, 128, 0.2);
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+
+      .cardBody {
+        align-self: flex-start;
+        background-color: rgba(255, 255, 255, 0.05);
+        margin-left: 30rem; // Add space to the right of the circle to avoid overlap
+        min-height: 12rem;
+        width: 24rem;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        gap: 1rem;
+        padding: 1rem;
+        text-align: left;
+        .Title {
+          color: white;
+        }
+        .designation {
+          width: 100%;
+          text-align: left;
+          color: white;
+          font-weight: bolder;
+        }
+        .cardDescription {
+          color: white;
+        }
+        .contactButton {
+          gap: 1rem;
+          display: flex;
+          p {
+            color: white;
+          }
+        }
+      }
+    }
   }
 }

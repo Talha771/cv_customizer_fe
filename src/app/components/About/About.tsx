@@ -9,8 +9,8 @@ const About = () => {
         <Image
           src={"/tj_image.jpg"}
           alt="Profile Picture"
-          width={125}
-          height={125}
+          width={150}
+          height={150}
         />
       </div>
       <div className={styles.Introduction}>
