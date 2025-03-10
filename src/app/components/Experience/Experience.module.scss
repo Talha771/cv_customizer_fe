@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; // Ensure it serves as a reference for absolute positioning
+    position: relative;
     flex-direction: column;
     gap: 50px;
 
@@ -23,27 +23,39 @@
       left: 50%;
       width: 4px;
       height: 100%;
-      background-color: #4a5568; // Gray color
+      background-color: #4a5568;
       transform: translateX(-50%);
     }
 
     .experienceCard {
       display: flex;
-      align-items: center; // Align items horizontally
-      position: relative; // Ensure the circle is positioned correctly
+      align-items: center;
+      position: relative;
       align-items: center;
       justify-content: center;
+
+      &.leftCard {
+        .cardBody {
+          margin-right: 30rem;
+          margin-left: 0;
+        }
+      }
+
+      &.rightCard {
+        .cardBody {
+          margin-left: 30rem;
+          margin-right: 0;
+        }
+      }
 
       .circle {
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
-        left: 50%; // Position on the vertical line (gray line)
-        top: 0; // Align circle to the top
-        transform: translateX(
-          -50%
-        ); // Center horizontally along the vertical line
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
         border: 5px solid white;
         background-color: rgba(128, 128, 128, 0.2);
         width: 3rem;
@@ -54,7 +66,6 @@
       .cardBody {
         align-self: flex-start;
         background-color: rgba(255, 255, 255, 0.05);
-        margin-left: 30rem; // Add space to the right of the circle to avoid overlap
         min-height: 12rem;
         width: 24rem;
         border-radius: 30px;

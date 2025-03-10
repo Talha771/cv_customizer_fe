@@ -4,16 +4,15 @@ import Image from "next/image";
 import { ExperienceCardData } from "@/app/lib/types";
 import { ExperienceData } from "@/app/lib/data";
 
-const ExperienceCard = (data: ExperienceCardData) => {
+const ExperienceCard = (data: ExperienceCardData, isRight: boolean) => {
   return (
-    <div className={styles.experienceCard}>
+    <div className={`${styles.experienceCard} ${isRight ? styles.rightCard : styles.leftCard}`}>
       <div className={styles.circle}>
         <span>
           <Image src={data.logo} width={25} height={25} alt="svg" />
         </span>
       </div>
       <div className={styles.cardBody}>
-
         <div className={styles.Title}>
           <h3>{data.Title}</h3>
         </div>
@@ -30,11 +29,12 @@ const ExperienceCard = (data: ExperienceCardData) => {
             <p>talha.j771@gmail.com</p>
           </div>
         </a>
-}
+        }
       </div>
     </div>
   );
 };
+
 const Experience = () => {
   return (
     <div className={styles.experienceWrapper}>
@@ -42,8 +42,8 @@ const Experience = () => {
         <h1>Experience</h1>
       </div>
       <div className={styles.experience}>
-        {ExperienceData.map((experience) => {
-          return ExperienceCard(experience);
+        {ExperienceData.map((experience, index) => {
+          return ExperienceCard(experience, index % 2 === 1);
         })}
       </div>
     </div>
