@@ -18,7 +18,6 @@ const ProjectsCard = ({ Title, Description, Tools, Link }: ProjectsData) => {
           } else {
             element.style.transform = "scale(0.8)";
             element.style.opacity = "0";
-            element.style.display="none"
           }
         });
       },
