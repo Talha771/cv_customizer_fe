@@ -44,3 +44,9 @@ export const ExperienceData: ExperienceCardData[] = [
   }
 
 ]
+
+export const navItems = [
+  { id: "About", icon: "/about.svg" },
+  { id: "Projects", icon: "/projects.svg" },
+  { id: "Experience", icon: "/experience.svg" },
+];

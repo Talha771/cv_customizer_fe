@@ -1,67 +1,73 @@
 'use client'
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./ProjectsCard.module.scss";
 import { ProjectsData } from "@/app/lib/types";
 import Image from "next/image";
 
 const ProjectsCard = ({ Title, Description, Tools, Link }: ProjectsData) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Step 1: Select the current card element to observe
-    const cardElement = document.querySelector(`.${styles.cardWrapper}`);
-
-    // Step 2: Define the observer callback function
-    function observerCallback(entries: IntersectionObserverEntry[]) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Step 3: Add 'animate' class when the card is in view
-          entry.target.classList.add(styles.animate);
-        } else {
-          // Step 4: Optionally remove the 'animate' class when the card is out of view
-          entry.target.classList.remove(styles.animate);
-        }
-      });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const element = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            element.style.transform = "scale(1)";
+            element.style.opacity = "1";
+          } else {
+            element.style.transform = "scale(0.8)";
+            element.style.opacity = "0";
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+  
+    if (cardRef.current) {
+      cardRef.current.style.transform = "scale(0.8)";
+      cardRef.current.style.opacity = "0";
+      cardRef.current.style.transition = "transform 0.6s ease-out, opacity 0.6s ease-out";
+      observer.observe(cardRef.current);
     }
-
-    // Step 5: Create the IntersectionObserver instance
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.5, // Adjust threshold if necessary
-    });
-
-    // Step 6: Start observing the card element
-    if (cardElement) observer.observe(cardElement);
-
-    // Cleanup the observer when the component unmounts
+  
     return () => {
-      if (cardElement) observer.disconnect();
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
     };
-  }, []); // Empty dependency array to run only once on mount
-
+}, []);
   return (
-    <div className={styles.cardWrapper}>
-      <div className={styles.title}>
-        <p>{Title}</p>
-      </div>
-      <div>
-        <p>{Description}</p>
-      </div>
-      <div className={styles.toolsWrapper}>
-        {Tools.map((tools, index) => (
-          <span key={index} className={styles.tool}>
-            {tools}
-          </span>
-        ))}
-        {Link && (
-          <span>
-            <a href={Link} target="_blank">
-              <Image
-                src={"/github.svg"}
-                alt="git_link"
-                width={30}
-                height={30}
-              />
-            </a>
-          </span>
-        )}
+    <div className={styles.cardWrapper} ref={cardRef}>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h2>{Title}</h2>
+        </div>
+        <div className={styles.description}>
+          <p>{Description}</p>
+        </div>
+        <div className={styles.toolsWrapper}>
+          {Tools.map((tools, index) => (
+            <span key={index} className={styles.tool}>
+              {tools}
+            </span>
+          ))}
+          {Link && (
+            <span className={styles.githubLink}>
+              <a href={Link} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={"/github.svg"}
+                  alt="git_link"
+                  width={30}
+                  height={30}
+                  className={styles.githubIcon}
+                />
+              </a>
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
