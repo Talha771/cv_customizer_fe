@@ -11,18 +11,20 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.sideNav}>
-        <SideNav/>
+          <SideNav/>
         </div>
-        <div className={styles.About} id="About"> 
-          <About />
-        </div>
-        <Vertical />
-        <div id="Projects">
-        <Projects/>
-        </div>
-        <Vertical />
-        <div id="Experience">
-        <Experience/>
+        <div className={styles.content}>
+          <section className={styles.About} id="About"> 
+            <About />
+          </section>
+          <Vertical />
+          <section className={styles.section} id="Projects">
+            <Projects/>
+          </section>
+          <Vertical />
+          <section className={styles.section} id="Experience">
+            <Experience/>
+          </section>
         </div>
       </main>
     </div>

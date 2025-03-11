@@ -5,6 +5,8 @@
   justify-content: center;
   align-items: center;
   gap: 50px;
+  width: 100%;
+  padding: 20px;
 
   .noUnderline {
     text-decoration: none; // Removes the underline
@@ -12,12 +14,30 @@
   }
 
   .Introduction {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding: 0 15%;
     font-size: 2.25rem;
     color: white;
+    text-align: center;
+    line-height: 1.4;
+
+    @media (max-width: 1024px) {
+      padding: 0 10%;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 5%;
+      font-size: 1.75rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0;
+      font-size: 1.5rem;
+    }
+
     h2{
       text-align: center;
+      margin: 0;
     }
   }
   .pfp {
@@ -25,15 +45,37 @@
       border:3px solid white;
       margin-bottom: -25px;
       border-radius: 50%;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        width: 120px;
+        height: 120px;
+      }
+
+      @media (max-width: 480px) {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
   .reachOutdivs {
     color: white;
     display: flex;
     gap: 5px;
-    :hover{
-      opacity: 0.5;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+
+    @media (max-width: 768px) {
+      gap: 10px;
     }
+
     .rectangleDiv {
       background-color: #524d60;
       min-width: 250px;
@@ -41,8 +83,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 5px;
+      padding: 5px 20px;
       border-radius: 500px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        min-width: 200px;
+        height: 45px;
+      }
+
+      @media (max-width: 480px) {
+        min-width: 180px;
+        height: 40px;
+        font-size: 0.9rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1rem;
+
+        @media (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
     }
     .icon {
       background-color: #524d60;
@@ -53,8 +122,36 @@
       align-items: center;
       padding: 5px;
       border-radius: 500px;
-      :hover{
-        opacity: 0.4;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        min-width: 45px;
+        height: 45px;
+      }
+
+      @media (max-width: 480px) {
+        min-width: 40px;
+        height: 40px;
+      }
+
+      img {
+        width: 35px;
+        height: 35px;
+
+        @media (max-width: 768px) {
+          width: 30px;
+          height: 30px;
+        }
+
+        @media (max-width: 480px) {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }
