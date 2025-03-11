@@ -2,53 +2,114 @@
   background-color: #1e1e2e; /* Dark background */
   border-radius: 12px;
   padding: 20px;
-  width: 640px;
-  height: 20rem;
+  width: 100%;
+  max-width: 640px;
+  min-height: 20rem;
   color: #ffffff;
   font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .title {
-    margin-top: 10%;
-    margin-bottom: 50px;
-  }
-  p {
-    margin: 0;
-    font-size: 16px;
-    text-align: centers;
-  }
-  div:first-child p {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .cardWrapper div:nth-child(2) p {
-    color: #b0b0d0; /* Slightly bluish white */
-    font-size: 14px;
-    line-height: 1.6;
-    .cardWrapper div:nth-child(3) p {
-      font-size: 14px;
-      font-weight: bold;
-      margin-top: 10px;
+    margin-top: 5%;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 0;
+
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
   }
+
+  .description {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #b0b0d0;
+      margin: 0;
+      padding: 0 10px;
+
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
   .toolsWrapper {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    justify-content: center;
+    margin-top: auto;
+    padding: 10px;
+    width: 100%;
+
     .tool {
-      background-color: #1a1a1a; // Dark background like in the image
-      color: #ffffff; // White text
-      font-size: 0.875rem; // Adjust font size for better readability
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-size: 0.875rem;
       font-weight: 500;
-      padding: 6px 12px; // Add padding for pill shape
-      border-radius: 16px; // Rounded corners to make it pill-shaped
+      padding: 6px 12px;
+      border-radius: 16px;
       display: inline-block;
-      margin: 5px; // Add spacing between tags
-      text-transform: uppercase; // Convert text to uppercase
-      letter-spacing: 0.5px; // Improve readabili
+      margin: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      @media (max-width: 768px) {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+      }
     }
+
+    .githubLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      .githubIcon {
+        @media (max-width: 768px) {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cardWrapper {
+    padding: 15px;
+    min-height: 16rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardWrapper {
+    padding: 10px;
+    min-height: 14rem;
   }
 }

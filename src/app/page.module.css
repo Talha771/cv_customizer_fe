@@ -5,16 +5,93 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  .sideNav{
-    height:50%;
-    position: fixed;
-    top:calc(50% -25px);
-    right: 5px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
 }
-  .About {
-    width: 100%;
-  }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
+  max-width: calc(100% - 80px);
+  margin: 0 auto;
 }
+
+.sideNav {
+  height: 50%;
+  position: fixed;
+  top: calc(50% - 25px);
+  right: 5px;
+  z-index: 100;
+}
+
+.About {
+  width: 100%;
+}
+
+.section {
+  width: 100%;
+  scroll-margin-top: 2rem;
+}
+
 .page {
   background-color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
+  .main {
+    padding: 15px;
+    gap: 40px;
+  }
+
+  .content {
+    max-width: calc(100% - 60px);
+    gap: 40px;
+  }
+
+  .sideNav {
+    right: 3px;
+  }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 10px;
+    gap: 30px;
+  }
+
+  .content {
+    max-width: 100%;
+    gap: 30px;
+    padding: 0 10px;
+    margin-bottom: 70px; /* Space for fixed bottom navigation */
+  }
+
+  .sideNav {
+    height: auto;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(17, 24, 39, 0.95);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section {
+    scroll-margin-top: 1rem;
+  }
+
+  #Projects, #Experience {
+    width: 100%;
+    padding: 0 10px;
+  }
 }
