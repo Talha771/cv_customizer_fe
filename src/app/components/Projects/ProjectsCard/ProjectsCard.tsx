@@ -1,46 +1,39 @@
 'use client'
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styles from "./ProjectsCard.module.scss";
 import { ProjectsData } from "@/app/lib/types";
 import Image from "next/image";
+import { useIntersectionObserver } from "@/app/lib/hooks/useIntersectionObserver";
 
 const ProjectsCard = ({ Title, Description, Tools, Link }: ProjectsData) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const handleIntersect = (entry: IntersectionObserverEntry) => {
+    const element = entry.target as HTMLElement;
+    element.style.transform = "scale(1)";
+    element.style.opacity = "1";
+  };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const element = entry.target as HTMLElement;
-          if (entry.isIntersecting) {
-            element.style.transform = "scale(1)";
-            element.style.opacity = "1";
-          } else {
-            element.style.transform = "scale(0.8)";
-            element.style.opacity = "0";
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      }
-    );
-  
-    if (cardRef.current) {
-      cardRef.current.style.transform = "scale(0.8)";
-      cardRef.current.style.opacity = "0";
-      cardRef.current.style.transition = "transform 0.6s ease-out, opacity 0.6s ease-out";
-      observer.observe(cardRef.current);
-    }
-  
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-}, []);
+  const handleUnintersect = (entry: IntersectionObserverEntry) => {
+    const element = entry.target as HTMLElement;
+    element.style.transform = "scale(0.8)";
+    element.style.opacity = "0";
+  };
+
+  const cardRef = useIntersectionObserver<HTMLDivElement>({
+    threshold: 0.5,
+    onIntersect: handleIntersect,
+    onUnintersect: handleUnintersect,
+  });
+
   return (
-    <div className={styles.cardWrapper} ref={cardRef}>
+    <div 
+      className={styles.cardWrapper} 
+      ref={cardRef}
+      style={{
+        transform: "scale(0.8)",
+        opacity: "0",
+        transition: "transform 0.6s ease-out, opacity 0.6s ease-out"
+      }}
+    >
       <div className={styles.content}>
         <div className={styles.title}>
           <h2>{Title}</h2>

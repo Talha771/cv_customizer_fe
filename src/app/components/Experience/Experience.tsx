@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useEffect } from "react";
 import styles from "./Experience.module.scss";
 import Image from "next/image";
 import { ExperienceCardData } from "@/app/lib/types";
@@ -36,6 +37,32 @@ const ExperienceCard = (data: ExperienceCardData, isRight: boolean) => {
 };
 
 const Experience = () => {
+  const intersectionObserverFunc = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      let element = entry.target as HTMLElement;
+      element.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+
+      if (entry.isIntersecting) {
+        element.style.transform = "scale(1)";
+        element.style.opacity = "1";
+      } else {
+        element.style.transform = "scale(0.8)";
+        element.style.opacity = "0";
+      }
+    });
+  };
+  const useEffectCB = () => {
+    // create an intersection observer in here, and then use it to return the class of the div intersection
+    console.log("I have been called");
+    const observer = new IntersectionObserver(intersectionObserverFunc, {
+      threshold: 0.5,
+    });
+    let thingsObserved = document.querySelector(`.${styles.experienceWrapper}`);
+    if (thingsObserved) {
+      observer.observe(thingsObserved);
+    }
+  };
+  useEffect(useEffectCB, []);
   return (
     <div className={styles.experienceWrapper}>
       <div className={styles.title}>

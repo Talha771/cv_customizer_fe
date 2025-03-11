@@ -7,8 +7,7 @@ const Header = () => {
   const headerMenu = {
     "Home": "/",
     "CVCustomizer": "/CVCustomizer",
-    "Me ?": "/me",
-    "Contact Us": "/contact",
+    // "Contact Me": "/contact",
   };
 
   return (
