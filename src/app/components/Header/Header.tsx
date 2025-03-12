@@ -7,8 +7,9 @@ const Header = () => {
   const headerMenu = {
     "Home": "/",
     "CVCustomizer": "/CVCustomizer",
-    // "Contact Me": "/contact",
+    "Blog":"https://wolfbiter.medium.com/"
   };
+
 
   return (
     <div className={styles.header}>
