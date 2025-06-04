@@ -1,141 +1,122 @@
 "use client";
-import axios from "axios";
-import React, { useState } from "react";
+
+import { useState } from "react";
+import {
+  Education,
+  Experience,
+  PersonalInfo,
+  Projects,
+} from "../types/formTypes";
+import { convertToJson } from "../utils/cvCustomizerUtils";
 import styles from "./page.module.scss";
-// import { PdfViewer } from "../components/PDFViewer/PdfViewer";
+import { EducationSection } from "./components/Education/EducationSection";
+import { ExperienceSection } from "./components/Experience/ExperienceSection";
+import { PersonalSection } from "./components/PersonalInformation/PersonalSection";
+import { ProjectSection } from "./components/Project/ProjectSection";
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import { useSearchParams } from "next/navigation";
 import { Loader } from "../components/Loader/Loader";
+
 export default function Page() {
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
-  console.log(API_BASE);
-  const [jobDescription, setJobDescription] = useState("");
-  const [pdfFile, setpdfFile] = useState("");
-  const [loading, setLoading] = useState(false);
-  
-  
-  async function sendJobDescription(jobDescription: string) {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [loading, setLoading ]= useState(false)
+  const [educationArr, setEducationArr] = useState<Education[]>([
+    {
+      institution: "",
+      period: "",
+      degree: "",
+    },
+  ]);
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
+    name: "",
+    github_link: "",
+    email: "",
+    linkedin_link: "",
+    phone: "",
+  });
+  const [experienceArr, setExperienceArr] = useState<Experience[]>([
+    {
+      company: "",
+      period: "",
+      position: "",
+      bullets: [""],
+    },
+  ]);
+  const [projectsArr, setProjectsArr] = useState<Projects[]>([
+    {
+      name: "",
+      technologies: [""],
+      period: "",
+      bullets: [""],
+    },
+  ]);
+  const handleSubmitButton = async () => {
+    const json_request = JSON.stringify(
+      convertToJson(personalInfo, experienceArr, projectsArr, educationArr)
+    );
+    setLoading(true)
     try {
-      axios.post(`${API_BASE}/description`, {
-        description: jobDescription,
+      const response = await fetch(`${API_BASE}/getCV`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, // Ensure proper header for JSON
+        body: json_request,
       });
-      setLoading(true);
-    } catch (error) {
-      console.error("Error sending job description:", error);
-      alert("Failed to send job description. Please try again.");
+      if (!response.ok) {
+        console.error(response.statusText);
+        alert(response.statusText)
+        setLoading(false)
+        return 
+      }
+      if (response.status === 200) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "cv.pdf"; // Customize your filename if needed
+        link.click();
+        console.log("PDF file downloaded");
+        setLoading(false)
+      }
+    } catch (e) {
+      console.error(e);
+      setLoading(false)
     }
-  }
-  
-  async function getCustomCV() {
-    try {
-      const response = await axios.get(`${API_BASE}/customCV`, {
-        responseType: "blob", // To handle the binary response
-      });
-      
-      // Create a link to download the PDF
-      const file = new Blob([response.data], { type: "application/pdf" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(file);
-      setpdfFile(link.href);
-    } catch (error) {
-      console.error("Error fetching custom CV:", error);
-      alert("Failed to generate the custom resume.");
-    }
-    setLoading(false);
-  }
-  async function handleGenerateButton(){
-        await sendJobDescription(jobDescription);
-        await getCustomCV();                
-  }
-  // return (
-    //   <div className={styles.pageWrapper}>
-    //     <div className={styles.loader}>
-  //       <Loader loading={loading} />
-  //     </div>
-  //     <div className={`${styles.body} ${loading ? styles.overlay : ""}`}>
-  //       <div className={styles.descriptionEntry}>
-  //         <h3>Generate Custom Resume</h3>
-  //         <div className={styles.fullDescriptionField}>
-  //           <label>Job Description</label>
-  //           <input
-  //             placeholder="Enter Job Description or Drag .txt or pdf file here"
-  //             type="text"
-  //             value={jobDescription}
-  //             onChange={(e) => {
-  //               setJobDescription(e.target.value);
-  //             }}
-  //           />
-  //         </div>
-  //         <div className={styles.orBlock}>
-  //           <div className={styles.divider}></div>
-  //           <h2>OR</h2>
-  //           <div className={styles.divider}></div>
-  //         </div>
-  //         <div className={styles.manualInputField}>
-  //           <input
-  //             type="text"
-  //             value={languages}
-  //             onChange={(e) => {
-  //               setLanguages(e.target.value);
-  //             }}
-  //             placeholder="Enter list of languages, comma seperated"
-  //           />
-  //           <input
-  //             type="text"
-  //             value={tools}
-  //             onChange={(e) => {
-  //               setTools(e.target.value);
-  //             }}
-  //             placeholder="Enter list of TOOLS, comma seperated"
-  //           />
-  //         </div>
-  //         <div>
-  //           <button
-  //             type="button"
-  //             onClick={async () => {
-  //               console.log(jobDescription);
-  //               if (jobDescription && (languages || tools)) {
-  //                 alert(
-  //                   "The tool will use the Job Description and not Manual Entry if both are provided"
-  //                 );
-  //               }
-  //               if (pdfFile) {
-  //                 setpdfFile("");
-  //               }
-  //               await sendJobDescription(jobDescription);
-  //               await getCustomCV();
-  //             }}
-  //           >
-  //             Generate CV
-  //           </button>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className={styles.sideBar}>Sidebars</div>
-  //   </div>
-  // );
+  };
+
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.loader}>
-        <Loader loading={loading} />
+    <main className={styles.main}>
+      <Loader loading={loading}/>
+      <div
+        className={styles.sidebarWrapper}
+        onClick={() => {
+          setShowSidebar((prev) => !prev);
+        }}
+      >
+        {">"}
+        {showSidebar && <Sidebar />}
       </div>
-      <div className={`${styles.body} ${loading ? styles.overlay : ""}`}>
-        <div className={styles.main}> 
-          <div className={styles.JobDescription}>
-            <h2> 
-              Input Job Description 
-            </h2>
-            <input placeholder="Paste Job Description Here"></input>
-            <button onClick={handleGenerateButton}>
-              Generate CV 
-            </button>
-          </div>
-          <div className={styles.previewPDF}>
-            {/* {pdfFile ? PdfViewer(pdfFile):""} */}
-          </div>
+      <div className={styles.mainContent}>
+        <div>
+          <PersonalSection
+            personalInfo={personalInfo}
+            setPersonalInfo={setPersonalInfo}
+          />
         </div>
-        <div className={styles.bottomBar}>
-          bottom
-        </div>
+        <EducationSection
+          educationArr={educationArr}
+          setEducationArr={setEducationArr}
+        />
+        <ExperienceSection
+          experienceArr={experienceArr}
+          setExperienceArr={setExperienceArr}
+        />
+        <ProjectSection
+          projectArr={projectsArr}
+          setProjectArr={setProjectsArr}
+        />
+        <button onClick={handleSubmitButton}>Submit</button>
       </div>
-    </div>
+    </main>
   );
 }

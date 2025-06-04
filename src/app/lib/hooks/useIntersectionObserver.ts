@@ -1,3 +1,4 @@
+import { allTypes } from '@/app/types/formTypes';
 import { useEffect, useRef } from 'react';
 
 interface UseIntersectionObserverProps {
@@ -49,3 +50,7 @@ export const useIntersectionObserver = <T extends HTMLElement>({
 
   return elementRef;
 }; 
+
+export const useHandleChange = (arr:allTypes[],index:number,value:string)=> {
+  
+}

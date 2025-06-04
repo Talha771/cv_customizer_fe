@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect } from "react";
 import styles from "./Experience.module.scss";
 import Image from "next/image";
@@ -7,7 +7,11 @@ import { ExperienceData } from "@/app/lib/data";
 
 const ExperienceCard = (data: ExperienceCardData, isRight: boolean) => {
   return (
-    <div className={`${styles.experienceCard} ${isRight ? styles.rightCard : styles.leftCard}`}>
+    <div
+      className={`${styles.experienceCard} ${
+        isRight ? styles.rightCard : styles.leftCard
+      }`}
+    >
       <div className={styles.circle}>
         <span>
           <Image src={data.logo} width={25} height={25} alt="svg" />
@@ -23,14 +27,19 @@ const ExperienceCard = (data: ExperienceCardData, isRight: boolean) => {
         <div className={styles.cardDescription}>
           <p>{data.description}</p>
         </div>
-        {data.button && 
-        <a href="mailto:talha.j771@gmail.com">
-          <div className={styles.contactButton}>
-            <Image src={"./email - white.svg"} height={25} width={25} alt="email" />
-            <p>talha.j771@gmail.com</p>
-          </div>
-        </a>
-        }
+        {data.button && (
+          <a href="mailto:talha.j771@gmail.com">
+            <div className={styles.contactButton}>
+              <Image
+                src={"./email - white.svg"}
+                height={25}
+                width={25}
+                alt="email"
+              />
+              <p>talha.j771@gmail.com</p>
+            </div>
+          </a>
+        )}
       </div>
     </div>
   );
@@ -70,7 +79,11 @@ const Experience = () => {
       </div>
       <div className={styles.experience}>
         {ExperienceData.map((experience, index) => {
-          return ExperienceCard(experience, index % 2 === 1);
+          return (
+            <div id={String(index)}>
+              {ExperienceCard(experience, index % 2 === 1)}
+            </div>
+          );
         })}
       </div>
     </div>

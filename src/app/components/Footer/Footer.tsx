@@ -10,7 +10,7 @@ const SOCIAL = {
 
 function createIcon(link:string,logo:string,alt:string){
     return (
-        <a href={link} target="_blank">
+        <a href={link} target="_blank" key={alt}>
             <Image src={logo} alt={alt} width={32} height={32} />
         </a>
     )

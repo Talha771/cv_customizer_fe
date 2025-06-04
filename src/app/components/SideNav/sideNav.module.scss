@@ -16,8 +16,10 @@
     color: rgb(107 114 128);
     list-style-type: none;
     &.active {
+      img{
       color: white;
       background-color: rgb(107, 114, 128);
+      }
     }
   }
 }
